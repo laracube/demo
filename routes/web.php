@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    redirect('/laracube');
+    return redirect(RouteServiceProvider::HOME);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

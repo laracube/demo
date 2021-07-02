@@ -28,7 +28,7 @@ class LaracubeServiceProvider extends LaracubeApplicationServiceProvider
     {
         Gate::define('viewLaracube', function ($user) {
             return in_array($user->email, [
-                //
+                'demo@laracube.io',
             ]);
         });
     }

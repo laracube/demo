@@ -9,5 +9,6 @@ RUN cp .env.demo .env
 RUN rm -rf database/database.sqlite
 RUN touch database/database.sqlite
 RUN php artisan migrate
+RUN php artisan db:seed
 
 RUN chmod -R 777 /var/www/html
