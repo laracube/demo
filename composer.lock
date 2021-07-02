@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2378964f12ae8596401c170bb0d94b9",
+    "content-hash": "82403bba01f3eeabd7ddbe84c6663999",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -860,6 +860,65 @@
                 "source": "https://github.com/guzzle/psr7/tree/2.0.0"
             },
             "time": "2021-06-30T20:03:07+00:00"
+        },
+        {
+            "name": "laracube/laracube",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracube/laracube.git",
+                "reference": "c18f9a7c9bd44c7fe34a569e224f4f8aead51563"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracube/laracube/zipball/c18f9a7c9bd44c7fe34a569e224f4f8aead51563",
+                "reference": "c18f9a7c9bd44c7fe34a569e224f4f8aead51563",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laracube\\Laracube\\Providers\\LaracubePackageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Laracube": "Laracube\\Laracube\\Laracube"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laracube\\Laracube\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Akki Khare",
+                    "email": "akki@laracube.io"
+                }
+            ],
+            "description": "Reporting package for laravel",
+            "homepage": "https://github.com/laracube/laracube",
+            "keywords": [
+                "laracube"
+            ],
+            "support": {
+                "issues": "https://github.com/laracube/laracube/issues",
+                "source": "https://github.com/laracube/laracube/tree/v0.1"
+            },
+            "time": "2021-06-29T04:35:26+00:00"
         },
         {
             "name": "laravel/framework",
