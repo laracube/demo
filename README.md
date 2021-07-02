@@ -4,6 +4,5 @@ Laracube demo.
 
 ## Docker
 
-```
-docker run -p 9090:9090 laracube/demo
-```
+1. Run the docker image. `docker run -it --rm -p 9091:80 laracube/demo`
+2. Visit `localhost:9091`

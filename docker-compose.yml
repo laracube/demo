@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  web:
+    image: akkiio/laravel-web:7.4
+    volumes:
+      - .:/var/www/html
+    ports:
+    - 9092:80
+
+  db:
+    image: mysql:8
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 33063:3306
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: root
+
+volumes:
+  db:
