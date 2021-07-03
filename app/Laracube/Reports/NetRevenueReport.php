@@ -2,6 +2,11 @@
 
 namespace App\Laracube\Reports;
 
+use App\Laracube\Resources\AverageNetRevenueByOrder;
+use App\Laracube\Resources\NetRevenue;
+use App\Laracube\Resources\NonRefundedOrders;
+use App\Laracube\Resources\PurchaseAndRefundsByCustomer;
+use App\Laracube\Resources\PurchaseAndRefundsByProduct;
 use Laracube\Laracube\Base\Report;
 
 class NetRevenueReport extends Report
@@ -35,10 +40,11 @@ class NetRevenueReport extends Report
     public function resources()
     {
         return [
-            // Revenue
-            // Orders
-            // Average Revenue per order
-            // Revenue Table
+            (new NetRevenue())->setColumns(4),
+            (new NonRefundedOrders())->setColumns(4),
+            (new AverageNetRevenueByOrder())->setColumns(4),
+            (new PurchaseAndRefundsByCustomer())->setColumns(12),
+            (new PurchaseAndRefundsByProduct())->setColumns(12),
         ];
     }
 }

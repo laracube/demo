@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Laracube\Resources\Customer;
+namespace App\Laracube\Resources;
 
 use App\Laracube\Collections\CustomerCollection;
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceTable;
 
-class PurchaseAndRefunds extends ResourceTable
+class PurchaseAndRefundsByCustomer extends ResourceTable
 {
     /**
      * Resource Collection class.
@@ -20,7 +20,7 @@ class PurchaseAndRefunds extends ResourceTable
      *
      * @var string
      */
-    public $heading = 'Total Purchase and Refunds';
+    public $heading = 'Total Purchase and Refunds by Customer';
 
     /**
      * The single value that will be displayed as sub-heading.
@@ -28,6 +28,13 @@ class PurchaseAndRefunds extends ResourceTable
      * @var string
      */
     public $subHeading = 'Table that shows gross and net revenue generated from a customer';
+
+    /**
+     * The per-page options for the resource.
+     *
+     * @var array
+     */
+    public static $perPageOptions = 10;
 
     /**
      * Get the query for the report.

@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Laracube\Resources\Customer;
+namespace App\Laracube\Resources;
 
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceBigNumber;
 
-class NetRevenue extends ResourceBigNumber
+class PayingCustomer extends ResourceBigNumber
 {
     /**
      * The single value that will be displayed as heading.
      *
      * @var string
      */
-    public $heading = 'Net Revenue';
+    public $heading = 'Paying Customer';
 
     /**
      * The single value that will be displayed as sub-heading.
      *
      * @var string
      */
-    public $subHeading = 'Excludes refunds and fees.';
+    public $subHeading = 'At-least 1 non-refunded purchase';
 
     /**
      * Get the output for the resource.
@@ -29,12 +29,12 @@ class NetRevenue extends ResourceBigNumber
     public function output()
     {
         $number = Order::where('is_refunded', 0)
-            ->selectRaw('SUM(total_amount) - SUM(fees) AS net_revenue')
+            ->selectRaw('COUNT(DISTINCT user_id) AS paying_customers')
             ->get()
             ->first();
 
         return [
-            'number' => '$'.number_format($number->net_revenue),
+            'number' => number_format($number->paying_customers),
         ];
     }
 }

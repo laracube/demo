@@ -2,6 +2,9 @@
 
 namespace App\Laracube\Reports;
 
+use App\Laracube\Resources\BestSellerProduct;
+use App\Laracube\Resources\PurchaseAndRefundsByProduct;
+use App\Laracube\Resources\TotalProducts;
 use Laracube\Laracube\Base\Report;
 
 class ProductReport extends Report
@@ -35,10 +38,9 @@ class ProductReport extends Report
     public function resources()
     {
         return [
-            // Total products
-            // Active Products (has a sale in the last 12 months)
-            // Best Seller
-            // Revenue and Refunds by Product simple table
+            (new TotalProducts())->setColumns(4),
+            (new BestSellerProduct())->setColumns(8),
+            (new PurchaseAndRefundsByProduct())->setColumns(12),
         ];
     }
 }

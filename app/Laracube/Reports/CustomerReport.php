@@ -2,10 +2,10 @@
 
 namespace App\Laracube\Reports;
 
-use App\Laracube\Resources\Customer\AverageRevenue;
-use App\Laracube\Resources\Customer\NetRevenue;
-use App\Laracube\Resources\Customer\PayingCustomer;
-use App\Laracube\Resources\Customer\PurchaseAndRefunds;
+use App\Laracube\Resources\AverageNetRevenueByCustomer;
+use App\Laracube\Resources\NetRevenue;
+use App\Laracube\Resources\PayingCustomer;
+use App\Laracube\Resources\PurchaseAndRefundsByCustomer;
 use Laracube\Laracube\Base\Report;
 
 class CustomerReport extends Report
@@ -41,8 +41,8 @@ class CustomerReport extends Report
         return [
             (new NetRevenue())->setColumns(4),
             (new PayingCustomer())->setColumns(4),
-            (new AverageRevenue())->setColumns(4),
-            (new PurchaseAndRefunds())->setColumns(12),
+            (new AverageNetRevenueByCustomer())->setColumns(4),
+            (new PurchaseAndRefundsByCustomer())->setColumns(12),
         ];
     }
 }

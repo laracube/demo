@@ -2,6 +2,9 @@
 
 namespace App\Laracube\Reports;
 
+use App\Laracube\Resources\AverageRefundByOrder;
+use App\Laracube\Resources\TotalRefundAmount;
+use App\Laracube\Resources\TotalRefundOrder;
 use Laracube\Laracube\Base\Report;
 
 class RefundReport extends Report
@@ -35,9 +38,9 @@ class RefundReport extends Report
     public function resources()
     {
         return [
-            // Refund
-            // Orders
-            // Average Refund per order
+            (new TotalRefundAmount())->setColumns(4),
+            (new TotalRefundOrder())->setColumns(4),
+            (new AverageRefundByOrder())->setColumns(4),
             // Refund Table
         ];
     }

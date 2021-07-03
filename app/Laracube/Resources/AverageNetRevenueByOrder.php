@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Laracube\Resources\Customer;
+namespace App\Laracube\Resources;
 
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceBigNumber;
 
-class AverageRevenue extends ResourceBigNumber
+class AverageNetRevenueByOrder extends ResourceBigNumber
 {
     /**
      * The single value that will be displayed as heading.
@@ -19,7 +19,7 @@ class AverageRevenue extends ResourceBigNumber
      *
      * @var string
      */
-    public $subHeading = 'Average net revenue per customer.';
+    public $subHeading = 'Average net revenue per order.';
 
     /**
      * Get the output for the resource.
@@ -29,7 +29,7 @@ class AverageRevenue extends ResourceBigNumber
     public function output()
     {
         $number = Order::where('is_refunded', 0)
-            ->selectRaw('SUM(total_amount)/COUNT(DISTINCT user_id) AS average_revenue')
+            ->selectRaw('SUM(total_amount)/COUNT(id) AS average_revenue')
             ->get()
             ->first();
 

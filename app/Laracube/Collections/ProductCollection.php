@@ -2,7 +2,6 @@
 
 namespace App\Laracube\Collections;
 
-use Illuminate\Support\Carbon;
 use Laracube\Laracube\Base\ResourceTableCollection;
 
 class ProductCollection extends ResourceTableCollection
@@ -18,15 +17,13 @@ class ProductCollection extends ResourceTableCollection
     {
         return $this->collection->transform(function ($item) {
             return [
-                'user_name' => $item->user_name,
-                'user_email' => $item->user_email,
-                'number_of_orders' => number_format($item->number_of_orders),
-                'total_spent' => '$'.number_format($item->total_spent),
-                'total_discount' => '$'.number_format($item->total_discount),
+                'product_name' => $item->product_name,
+                'total_orders' => number_format($item->total_orders),
+                'gross_revenue' => '$'.number_format($item->gross_revenue),
+                'refunded_orders' => number_format($item->refunded_orders),
+                'refunded_amount' => '$'.number_format($item->refunded_amount),
                 'total_fees' => '$'.number_format($item->total_fees),
-                'registered_at' => Carbon::parse($item->registered_at)->longAbsoluteDiffForHumans(),
-                'first_order_date' => Carbon::parse($item->first_order_date)->toDateString(),
-                'last_order_date' => Carbon::parse($item->last_order_date)->toDateString(),
+                'net_revenue' => '$'.number_format($item->net_revenue),
             ];
         });
     }
@@ -40,32 +37,32 @@ class ProductCollection extends ResourceTableCollection
     {
         return [
             [
-                'value' => 'user_name',
+                'value' => 'product_name',
                 'text' => 'Name',
-                'tooltip' => 'Name of the user',
+                'tooltip' => 'Name of the product',
                 'sortable' => false,
             ],
             [
-                'value' => 'user_email',
-                'text' => 'Email',
-                'tooltip' => 'Email of the user',
-                'sortable' => false,
-            ],
-            [
-                'value' => 'number_of_orders',
-                'text' => 'Number of Orders',
+                'value' => 'total_orders',
+                'text' => 'Total Orders',
                 'tooltip' => 'Number of Orders made by the user',
                 'sortable' => false,
             ],
             [
-                'value' => 'total_spent',
-                'text' => 'Total Spent',
-                'tooltip' => 'Total dollar amount spent by the user',
+                'value' => 'gross_revenue',
+                'text' => 'Gross revenue',
+                'tooltip' => 'Gross revenue generated from the user',
                 'sortable' => false,
             ],
             [
-                'value' => 'total_discount',
-                'text' => 'Total Discount',
+                'value' => 'refunded_orders',
+                'text' => 'Refunded Orders',
+                'tooltip' => null,
+                'sortable' => false,
+            ],
+            [
+                'value' => 'refunded_amount',
+                'text' => 'Refunded Amount',
                 'tooltip' => null,
                 'sortable' => false,
             ],
@@ -76,20 +73,8 @@ class ProductCollection extends ResourceTableCollection
                 'sortable' => false,
             ],
             [
-                'value' => 'registered_at',
-                'text' => 'Relationship Length',
-                'tooltip' => null,
-                'sortable' => false,
-            ],
-            [
-                'value' => 'first_order_date',
-                'text' => 'First Order Date',
-                'tooltip' => null,
-                'sortable' => false,
-            ],
-            [
-                'value' => 'last_order_date',
-                'text' => 'Last Order Date',
+                'value' => 'net_revenue',
+                'text' => 'Net Revenue',
                 'tooltip' => null,
                 'sortable' => false,
             ],
