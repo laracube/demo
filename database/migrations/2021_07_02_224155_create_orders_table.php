@@ -18,7 +18,6 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('total_amount');
-            $table->unsignedBigInteger('discount');
             $table->unsignedBigInteger('fees');
             $table->boolean('is_refunded')->default(0)->index();
             $table->timestamps();

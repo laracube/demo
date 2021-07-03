@@ -2,31 +2,30 @@
 
 namespace App\Laracube\Reports;
 
-use App\Laracube\Resources\UserTable;
 use Laracube\Laracube\Base\Report;
 
-class UserReport extends Report
+class RefundReport extends Report
 {
     /**
      * The single value name that would be used to display in navigation.
      *
      * @var string
      */
-    public static $navigation = 'User Report';
+    public static $navigation = 'Refund Report';
 
     /**
      * The single value that will be displayed as heading.
      *
      * @var string
      */
-    public static $heading = 'User Report';
+    public static $heading = 'Refund Report';
 
     /**
      * The single value that will be displayed as sub-heading.
      *
      * @var string
      */
-    public static $subHeading = 'This report shows all the users';
+    public static $subHeading = 'This reports shows the Refunds.';
 
     /**
      * Get the resources for the report.
@@ -36,7 +35,10 @@ class UserReport extends Report
     public function resources()
     {
         return [
-            (new UserTable())->setColumns(12),
+            // Refund
+            // Orders
+            // Average Refund per order
+            // Refund Table
         ];
     }
 }

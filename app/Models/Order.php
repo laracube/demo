@@ -18,7 +18,6 @@ class Order extends Model
         'user_id',
         'product_id',
         'total_amount',
-        'discount',
         'fees',
         'created_at',
         'updated_at',

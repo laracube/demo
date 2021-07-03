@@ -26,17 +26,16 @@ class OrderFactory extends Factory
         $user = User::inRandomOrder()->first();
         $product = Product::inRandomOrder()->first();
         $total_amount = $this->faker->randomNumber(4);
-        $discount = $total_amount * ($this->faker->randomDigit / 10);
         $fees = $total_amount * ($this->faker->randomDigit / 50);
         $date = $this->faker->dateTimeBetween('-2 years');
+        $isRefunded = $this->faker->randomElement([0, 1]);
 
         return [
             'user_id' => $user->id,
             'product_id' => $product->id,
             'total_amount' => $total_amount,
-            'discount' => $discount,
-            'fees' => $fees,
-            'is_refunded' => $this->faker->randomElement([0, 1]),
+            'fees' => $isRefunded ? 0 : $fees, // is refunded so no fees
+            'is_refunded' => $isRefunded,
             'created_at' => $date,
             'updated_at' => $date,
         ];
