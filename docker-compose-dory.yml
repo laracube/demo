@@ -6,5 +6,6 @@ services:
     image: akkiio/laravel-web:7.4
     volumes:
       - .:/var/www/html
-    ports:
-    - 9092:80
+    environment:
+      VIRTUAL_HOST: demo.laracube.docker
+      VIRTUAL_PORT: 80
