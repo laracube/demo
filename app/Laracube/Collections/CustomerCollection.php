@@ -35,7 +35,7 @@ class CustomerCollection extends ResourceTableCollection
      */
     public static function columns()
     {
-       return [
+        return [
             [
                 'value' => 'user_name',
                 'text' => 'Name',
@@ -60,7 +60,7 @@ class CustomerCollection extends ResourceTableCollection
                 'tooltip' => null,
                 'sortable' => false,
             ],
-           [
+            [
                 'value' => 'refunded_amount',
                 'text' => 'Refunded Amount',
                 'tooltip' => null,

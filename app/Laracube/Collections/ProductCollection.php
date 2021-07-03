@@ -38,7 +38,7 @@ class ProductCollection extends ResourceTableCollection
      */
     public static function columns()
     {
-       return [
+        return [
             [
                 'value' => 'user_name',
                 'text' => 'Name',
