@@ -2,7 +2,6 @@
 
 namespace App\Laracube\Resources\Revenue;
 
-use App\Laracube\Collections\CustomerNetRevenueCollection;
 use App\Laracube\Collections\ProductNetRevenueCollection;
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceTable;

@@ -2,11 +2,11 @@
 
 namespace App\Laracube\Reports;
 
+use App\Laracube\Resources\Order\OrderNet;
 use App\Laracube\Resources\Product\ProductAverageNetRevenue;
 use App\Laracube\Resources\Product\ProductBestSeller;
 use App\Laracube\Resources\Product\ProductPurchaseAndRefunds;
 use App\Laracube\Resources\Product\ProductTotal;
-use App\Laracube\Resources\Order\OrderNet;
 use App\Laracube\Resources\Revenue\NetRevenue;
 use Laracube\Laracube\Base\Report;
 
