@@ -37,7 +37,6 @@ class NetRevenue extends ResourceBigNumber
     {
         $number = Order::where('is_refunded', 0)
             ->selectRaw('SUM(total_amount) - SUM(fees) AS net_revenue')
-            ->get()
             ->first();
 
         return [

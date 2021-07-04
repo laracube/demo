@@ -2,9 +2,11 @@
 
 namespace App\Laracube\Reports;
 
-use App\Laracube\Resources\AverageRefundByOrder;
-use App\Laracube\Resources\TotalRefundAmount;
-use App\Laracube\Resources\TotalRefundOrder;
+use App\Laracube\Resources\Order\OrderAverageRefund;
+use App\Laracube\Resources\Order\OrderRefunded;
+use App\Laracube\Resources\Refund\RefundByCustomer;
+use App\Laracube\Resources\Refund\RefundByProduct;
+use App\Laracube\Resources\Refund\RefundTotal;
 use Laracube\Laracube\Base\Report;
 
 class RefundReport extends Report
@@ -38,10 +40,11 @@ class RefundReport extends Report
     public function resources()
     {
         return [
-            (new TotalRefundAmount())->setColumns(4),
-            (new TotalRefundOrder())->setColumns(4),
-            (new AverageRefundByOrder())->setColumns(4),
-            // Refund Table
+            (new RefundTotal()),
+            (new OrderRefunded()),
+            (new OrderAverageRefund()),
+            (new RefundByCustomer()),
+            (new RefundByProduct()),
         ];
     }
 }

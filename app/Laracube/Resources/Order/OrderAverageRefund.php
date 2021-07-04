@@ -1,25 +1,32 @@
 <?php
 
-namespace App\Laracube\Resources;
+namespace App\Laracube\Resources\Order;
 
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceBigNumber;
 
-class TotalRefundAmount extends ResourceBigNumber
+class OrderAverageRefund extends ResourceBigNumber
 {
     /**
      * The single value that will be displayed as heading.
      *
      * @var string
      */
-    public $heading = 'Total Amount';
+    public $heading = 'Average Refund';
 
     /**
      * The single value that will be displayed as sub-heading.
      *
      * @var string
      */
-    public $subHeading = 'Total amount that was refunded';
+    public $subHeading = 'Average refund per order';
+
+    /**
+     * The columns of the resource.
+     *
+     * @var int
+     */
+    public $columns = 4;
 
     /**
      * Get the output for the resource.
@@ -29,12 +36,11 @@ class TotalRefundAmount extends ResourceBigNumber
     public function output()
     {
         $number = Order::where('is_refunded', 1)
-            ->selectRaw('SUM(total_amount) AS total_refunded')
-            ->get()
+            ->selectRaw('SUM(total_amount)/COUNT(id) AS average_revenue')
             ->first();
 
         return [
-            'number' => '$'.number_format($number->total_refunded),
+            'number' => '$'.number_format($number->average_revenue),
         ];
     }
 }

@@ -39,19 +39,19 @@ class CustomerPurchaseAndRefundsCollection extends ResourceTableCollection
             [
                 'value' => 'user_name',
                 'text' => 'Name',
-                'tooltip' => 'Name of the user',
+                'tooltip' => null,
                 'sortable' => false,
             ],
             [
                 'value' => 'total_orders',
                 'text' => 'Total Orders',
-                'tooltip' => 'Number of Orders made by the user',
+                'tooltip' => null,
                 'sortable' => false,
             ],
             [
                 'value' => 'gross_revenue',
                 'text' => 'Gross revenue',
-                'tooltip' => 'Gross revenue generated from the user',
+                'tooltip' => null,
                 'sortable' => false,
             ],
             [

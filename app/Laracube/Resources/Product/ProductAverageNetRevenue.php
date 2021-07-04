@@ -19,7 +19,7 @@ class ProductAverageNetRevenue extends ResourceBigNumber
      *
      * @var string
      */
-    public $subHeading = 'Average net revenue per product.';
+    public $subHeading = 'Average net revenue per product';
 
     /**
      * The columns of the resource.
@@ -37,7 +37,6 @@ class ProductAverageNetRevenue extends ResourceBigNumber
     {
         $number = Order::where('is_refunded', 0)
             ->selectRaw('SUM(total_amount)/COUNT(DISTINCT product_id) AS average_revenue')
-            ->get()
             ->first();
 
         return [

@@ -6,7 +6,7 @@ use App\Laracube\Resources\Customer\CustomerAverageNetRevenue;
 use App\Laracube\Resources\Customer\CustomerHighestSpender;
 use App\Laracube\Resources\Customer\CustomerPaying;
 use App\Laracube\Resources\Customer\CustomerPurchaseAndRefunds;
-use App\Laracube\Resources\Revenue\NetOrders;
+use App\Laracube\Resources\Order\OrderNet;
 use App\Laracube\Resources\Revenue\NetRevenue;
 use Laracube\Laracube\Base\Report;
 
@@ -43,7 +43,7 @@ class CustomerReport extends Report
         return [
             (new CustomerPaying()),
             (new NetRevenue()),
-            (new NetOrders()),
+            (new OrderNet()),
             (new CustomerAverageNetRevenue()),
             (new CustomerHighestSpender()),
             (new CustomerPurchaseAndRefunds()),

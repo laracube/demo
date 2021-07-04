@@ -19,7 +19,7 @@ class CustomerAverageNetRevenue extends ResourceBigNumber
      *
      * @var string
      */
-    public $subHeading = 'Average net revenue per customer.';
+    public $subHeading = 'Average net revenue per customer';
 
     /**
      * The columns of the resource.
@@ -37,7 +37,6 @@ class CustomerAverageNetRevenue extends ResourceBigNumber
     {
         $number = Order::where('is_refunded', 0)
             ->selectRaw('SUM(total_amount)/COUNT(DISTINCT user_id) AS average_revenue')
-            ->get()
             ->first();
 
         return [

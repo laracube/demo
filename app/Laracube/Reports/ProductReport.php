@@ -6,7 +6,7 @@ use App\Laracube\Resources\Product\ProductAverageNetRevenue;
 use App\Laracube\Resources\Product\ProductBestSeller;
 use App\Laracube\Resources\Product\ProductPurchaseAndRefunds;
 use App\Laracube\Resources\Product\ProductTotal;
-use App\Laracube\Resources\Revenue\NetOrders;
+use App\Laracube\Resources\Order\OrderNet;
 use App\Laracube\Resources\Revenue\NetRevenue;
 use Laracube\Laracube\Base\Report;
 
@@ -43,7 +43,7 @@ class ProductReport extends Report
         return [
             (new ProductTotal()),
             (new NetRevenue()),
-            (new NetOrders()),
+            (new OrderNet()),
             (new ProductAverageNetRevenue()),
             (new ProductBestSeller()),
             (new ProductPurchaseAndRefunds()),

@@ -37,7 +37,6 @@ class ProductTotal extends ResourceBigNumber
     {
         $number = Order::where('is_refunded', 0)
             ->selectRaw('COUNT(DISTINCT product_id) AS total_products')
-            ->get()
             ->first();
 
         return [

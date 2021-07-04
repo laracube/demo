@@ -1,25 +1,32 @@
 <?php
 
-namespace App\Laracube\Resources;
+namespace App\Laracube\Resources\Order;
 
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceBigNumber;
 
-class NonRefundedOrders extends ResourceBigNumber
+class OrderNet extends ResourceBigNumber
 {
     /**
      * The single value that will be displayed as heading.
      *
      * @var string
      */
-    public $heading = 'Non Refunded Orders';
+    public $heading = 'Net Orders';
 
     /**
      * The single value that will be displayed as sub-heading.
      *
      * @var string
      */
-    public $subHeading = 'Total non refunded orders';
+    public $subHeading = 'Net Orders (excludes refunds)';
+
+    /**
+     * The columns of the resource.
+     *
+     * @var int
+     */
+    public $columns = 4;
 
     /**
      * Get the output for the resource.
@@ -29,12 +36,11 @@ class NonRefundedOrders extends ResourceBigNumber
     public function output()
     {
         $number = Order::where('is_refunded', 0)
-            ->selectRaw('COUNT(id) AS number_of_orders')
-            ->get()
+            ->selectRaw('COUNT(id) AS net_orders')
             ->first();
 
         return [
-            'number' => number_format($number->number_of_orders),
+            'number' => number_format($number->net_orders),
         ];
     }
 }

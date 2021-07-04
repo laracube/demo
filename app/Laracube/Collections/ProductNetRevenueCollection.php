@@ -4,7 +4,7 @@ namespace App\Laracube\Collections;
 
 use Laracube\Laracube\Base\ResourceTableCollection;
 
-class ProductPurchaseAndRefundsCollection extends ResourceTableCollection
+class ProductNetRevenueCollection extends ResourceTableCollection
 {
     /**
      * Transform the resource into an array.
@@ -19,10 +19,6 @@ class ProductPurchaseAndRefundsCollection extends ResourceTableCollection
             return [
                 'product_name' => $item->product_name,
                 'total_orders' => number_format($item->total_orders),
-                'gross_revenue' => '$'.number_format($item->gross_revenue),
-                'refunded_orders' => number_format($item->refunded_orders),
-                'refunded_amount' => '$'.number_format($item->refunded_amount),
-                'total_fees' => '$'.number_format($item->total_fees),
                 'net_revenue' => '$'.number_format($item->net_revenue),
             ];
         });
@@ -45,30 +41,6 @@ class ProductPurchaseAndRefundsCollection extends ResourceTableCollection
             [
                 'value' => 'total_orders',
                 'text' => 'Total Orders',
-                'tooltip' => null,
-                'sortable' => false,
-            ],
-            [
-                'value' => 'gross_revenue',
-                'text' => 'Gross revenue',
-                'tooltip' => null,
-                'sortable' => false,
-            ],
-            [
-                'value' => 'refunded_orders',
-                'text' => 'Refunded Orders',
-                'tooltip' => null,
-                'sortable' => false,
-            ],
-            [
-                'value' => 'refunded_amount',
-                'text' => 'Refunded Amount',
-                'tooltip' => null,
-                'sortable' => false,
-            ],
-            [
-                'value' => 'total_fees',
-                'text' => 'Total Fees',
                 'tooltip' => null,
                 'sortable' => false,
             ],

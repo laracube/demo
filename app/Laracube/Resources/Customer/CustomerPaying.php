@@ -37,7 +37,6 @@ class CustomerPaying extends ResourceBigNumber
     {
         $number = Order::where('is_refunded', 0)
             ->selectRaw('COUNT(DISTINCT user_id) AS paying_customers')
-            ->get()
             ->first();
 
         return [
