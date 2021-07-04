@@ -21,7 +21,7 @@ class CustomerPurchaseAndRefundsCollection extends ResourceTableCollection
                 'total_orders' => number_format($item->total_orders),
                 'gross_revenue' => '$'.number_format($item->gross_revenue),
                 'refunded_orders' => number_format($item->refunded_orders),
-                'refunded_amount' => '$'.number_format($item->refunded_amount),
+                'refunded_amount' => '<span class="red--text text--darken-3">$'.number_format($item->refunded_amount).'<span>',
                 'total_fees' => '$'.number_format($item->total_fees),
                 'net_revenue' => '$'.number_format($item->net_revenue),
             ];
@@ -62,7 +62,7 @@ class CustomerPurchaseAndRefundsCollection extends ResourceTableCollection
             ],
             [
                 'value' => 'refunded_amount',
-                'text' => 'Refunded Amount',
+                'text' => 'Refunded <i class="fas fa-dollar-sign"></i>',
                 'tooltip' => null,
                 'sortable' => false,
             ],

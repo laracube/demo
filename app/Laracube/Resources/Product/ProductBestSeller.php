@@ -52,7 +52,7 @@ class ProductBestSeller extends ResourceBigNumber
         $netRevenue = '$'.number_format($number->net_revenue);
 
         return [
-            'number' => "{$productName} <br /> {$netRevenue}",
+            'number' => "{$productName} <span class='text-h5'>with</span> {$netRevenue}",
         ];
     }
 }

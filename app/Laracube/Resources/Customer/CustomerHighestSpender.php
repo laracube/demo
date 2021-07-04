@@ -52,7 +52,7 @@ class CustomerHighestSpender extends ResourceBigNumber
         $netRevenue = '$'.number_format($number->net_revenue);
 
         return [
-            'number' => "{$name} <br/> {$netRevenue}",
+            'number' => "{$name} <span class='text-h5'>with</span> {$netRevenue}",
         ];
     }
 }
