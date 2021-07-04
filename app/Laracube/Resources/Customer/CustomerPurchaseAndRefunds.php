@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Laracube\Resources;
+namespace App\Laracube\Resources\Customer;
 
-use App\Laracube\Collections\CustomerCollection;
+use App\Laracube\Collections\CustomerPurchaseAndRefundsCollection;
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceTable;
 
-class PurchaseAndRefundsByCustomer extends ResourceTable
+class CustomerPurchaseAndRefunds extends ResourceTable
 {
     /**
      * Resource Collection class.
      *
      * @var string
      */
-    public static $collection = CustomerCollection::class;
+    public static $collection = CustomerPurchaseAndRefundsCollection::class;
 
     /**
      * The single value that will be displayed as heading.
@@ -35,6 +35,13 @@ class PurchaseAndRefundsByCustomer extends ResourceTable
      * @var array
      */
     public static $perPageOptions = 10;
+
+    /**
+     * The columns of the resource.
+     *
+     * @var int
+     */
+    public $columns = 12;
 
     /**
      * Get the query for the report.

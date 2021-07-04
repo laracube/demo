@@ -4,7 +4,7 @@ namespace App\Laracube\Collections;
 
 use Laracube\Laracube\Base\ResourceTableCollection;
 
-class CustomerCollection extends ResourceTableCollection
+class ProductPurchaseAndRefundsCollection extends ResourceTableCollection
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,7 @@ class CustomerCollection extends ResourceTableCollection
     {
         return $this->collection->transform(function ($item) {
             return [
-                'user_name' => $item->user_name,
+                'product_name' => $item->product_name,
                 'total_orders' => number_format($item->total_orders),
                 'gross_revenue' => '$'.number_format($item->gross_revenue),
                 'refunded_orders' => number_format($item->refunded_orders),
@@ -37,9 +37,9 @@ class CustomerCollection extends ResourceTableCollection
     {
         return [
             [
-                'value' => 'user_name',
+                'value' => 'product_name',
                 'text' => 'Name',
-                'tooltip' => 'Name of the user',
+                'tooltip' => 'Name of the product',
                 'sortable' => false,
             ],
             [

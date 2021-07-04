@@ -2,9 +2,12 @@
 
 namespace App\Laracube\Reports;
 
-use App\Laracube\Resources\BestSellerProduct;
-use App\Laracube\Resources\PurchaseAndRefundsByProduct;
-use App\Laracube\Resources\TotalProducts;
+use App\Laracube\Resources\Product\ProductAverageNetRevenue;
+use App\Laracube\Resources\Product\ProductBestSeller;
+use App\Laracube\Resources\Product\ProductPurchaseAndRefunds;
+use App\Laracube\Resources\Product\ProductTotal;
+use App\Laracube\Resources\Revenue\NetOrders;
+use App\Laracube\Resources\Revenue\NetRevenue;
 use Laracube\Laracube\Base\Report;
 
 class ProductReport extends Report
@@ -38,9 +41,12 @@ class ProductReport extends Report
     public function resources()
     {
         return [
-            (new TotalProducts())->setColumns(4),
-            (new BestSellerProduct())->setColumns(8),
-            (new PurchaseAndRefundsByProduct())->setColumns(12),
+            (new ProductTotal()),
+            (new NetRevenue()),
+            (new NetOrders()),
+            (new ProductAverageNetRevenue()),
+            (new ProductBestSeller()),
+            (new ProductPurchaseAndRefunds()),
         ];
     }
 }
