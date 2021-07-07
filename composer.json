@@ -9,7 +9,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laracube/laracube": "0.2",
+        "laracube/laracube": "0.2.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5"
     },
@@ -35,6 +35,9 @@
         }
     },
     "scripts": {
+        "post-update-cmd": [
+            "@php artisan laracube:publish"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

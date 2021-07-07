@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86b37880161b857e6d12917d73a98496",
+    "content-hash": "acaf59e9f3ab309dc5a71a13e7e66bdd",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -863,16 +863,16 @@
         },
         {
             "name": "laracube/laracube",
-            "version": "v0.2",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracube/laracube.git",
-                "reference": "0001bf0d8cb2937efe657f988cc8820092fa316b"
+                "reference": "4e456d801e7718627c630f1469192022f505641a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracube/laracube/zipball/0001bf0d8cb2937efe657f988cc8820092fa316b",
-                "reference": "0001bf0d8cb2937efe657f988cc8820092fa316b",
+                "url": "https://api.github.com/repos/laracube/laracube/zipball/4e456d801e7718627c630f1469192022f505641a",
+                "reference": "4e456d801e7718627c630f1469192022f505641a",
                 "shasum": ""
             },
             "require": {
@@ -916,9 +916,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laracube/laracube/issues",
-                "source": "https://github.com/laracube/laracube/tree/v0.2"
+                "source": "https://github.com/laracube/laracube/tree/v0.2.1"
             },
-            "time": "2021-07-04T17:05:19+00:00"
+            "time": "2021-07-07T19:03:24+00:00"
         },
         {
             "name": "laravel/framework",
