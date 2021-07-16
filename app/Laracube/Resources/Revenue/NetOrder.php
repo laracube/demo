@@ -5,21 +5,21 @@ namespace App\Laracube\Resources\Revenue;
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceBigNumber;
 
-class NetRevenue extends ResourceBigNumber
+class NetOrder extends ResourceBigNumber
 {
     /**
      * The single value that will be displayed as heading.
      *
      * @var string
      */
-    public $heading = 'Net Revenue';
+    public $heading = 'Net Orders';
 
     /**
      * The single value that will be displayed as sub-heading.
      *
      * @var string
      */
-    public $subHeading = 'Net revenue (excludes refunds and fees)';
+    public $subHeading = 'Net Orders (excludes refunds)';
 
     /**
      * The columns of the resource.
@@ -45,10 +45,10 @@ class NetRevenue extends ResourceBigNumber
 
         return [
             'line1' => [
-                'value' => '$'.number_format($line1->value),
+                'value' => number_format($line1->value),
             ],
             'line2' => [
-                'value' => 'from $'.number_format($line2->value),
+                'value' => 'from '.number_format($line2->value),
             ],
             'trend' => [
                 'value' => $trendValue.'%',
@@ -87,7 +87,7 @@ class NetRevenue extends ResourceBigNumber
     private function getLine1()
     {
         return Order::where('is_refunded', 0)
-            ->selectRaw('SUM(total_amount) - SUM(fees) AS value')
+            ->selectRaw('COUNT(id) AS value')
             ->first();
     }
 
@@ -105,7 +105,7 @@ class NetRevenue extends ResourceBigNumber
 
         return Order::where('is_refunded', 0)
             ->where('created_at', '<', $lastOrderDate->subDays(30))
-            ->selectRaw('SUM(total_amount) - SUM(fees) AS value')
+            ->selectRaw('COUNT(id) AS value')
             ->first();
     }
 
@@ -120,7 +120,7 @@ class NetRevenue extends ResourceBigNumber
             ->selectRaw('
                 YEAR(created_at) AS year,
                 MONTH(created_at) AS month,
-                (SUM(total_amount) - SUM(fees)) AS value
+                (COUNT(id)) AS value
             ')
             ->groupBy('year', 'month')
             ->orderBy('year', 'DESC')

@@ -41,7 +41,7 @@ class NetRevenueByCustomer extends ResourceTable
      *
      * @var int
      */
-    public $columns = 6;
+    public $columns = 12;
 
     /**
      * Get the query for the report.
@@ -58,6 +58,7 @@ class NetRevenueByCustomer extends ResourceTable
             ->selectRaw('
                 users.id AS user_id,
                 users.name AS user_name,
+                users.email AS user_email,
                 COUNT(orders.id) AS total_orders,
                 SUM(orders.total_amount) - SUM(orders.fees) AS net_revenue
             ');

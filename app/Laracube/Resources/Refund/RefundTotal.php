@@ -35,12 +35,24 @@ class RefundTotal extends ResourceBigNumber
      */
     public function output()
     {
-        $number = Order::where('is_refunded', 1)
-            ->selectRaw('SUM(total_amount) AS total_refund')
-            ->first();
+        $line1 = $this->getLine1();
 
         return [
-            'number' => '$'.number_format($number->total_refund),
+            'line1' => [
+                'value' => '$'.number_format($line1->value),
+            ],
         ];
+    }
+
+    /**
+     * Get line 1
+     *
+     * @return mixed
+     */
+    private function getLine1()
+    {
+        return Order::where('is_refunded', 1)
+            ->selectRaw('SUM(total_amount) AS value')
+            ->first();
     }
 }

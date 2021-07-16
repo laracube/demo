@@ -2,8 +2,12 @@
 
 namespace App\Laracube\Reports;
 
-use App\Laracube\Resources\Order\OrderAverageNetRevenue;
-use App\Laracube\Resources\Order\OrderNet;
+use App\Laracube\Resources\Revenue\NetAverageRevenueByCustomer;
+use App\Laracube\Resources\Revenue\NetRevenueHighestSpender;
+use App\Laracube\Resources\Revenue\NetRevenueBellerSellerProduct;
+use App\Laracube\Resources\Revenue\NetAverageRevenueByOrder;
+use App\Laracube\Resources\Revenue\NetAverageRevenueByProduct;
+use App\Laracube\Resources\Revenue\NetOrder;
 use App\Laracube\Resources\Revenue\NetRevenue;
 use App\Laracube\Resources\Revenue\NetRevenueByCustomer;
 use App\Laracube\Resources\Revenue\NetRevenueByProduct;
@@ -41,9 +45,13 @@ class NetRevenueReport extends Report
     {
         return [
             (new NetRevenue()),
-            (new OrderNet()),
-            (new OrderAverageNetRevenue()),
+            (new NetOrder()),
+            (new NetAverageRevenueByOrder()),
+            (new NetAverageRevenueByCustomer()),
+            (new NetAverageRevenueByProduct()),
+            (new NetRevenueHighestSpender()),
             (new NetRevenueByCustomer()),
+            (new NetRevenueBellerSellerProduct()),
             (new NetRevenueByProduct()),
         ];
     }

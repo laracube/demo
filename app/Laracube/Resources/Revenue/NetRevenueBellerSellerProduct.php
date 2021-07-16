@@ -4,29 +4,30 @@ namespace App\Laracube\Resources\Revenue;
 
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceBigNumber;
+use function number_format;
 
-class NetRevenue extends ResourceBigNumber
+class NetRevenueBellerSellerProduct extends ResourceBigNumber
 {
     /**
      * The single value that will be displayed as heading.
      *
      * @var string
      */
-    public $heading = 'Net Revenue';
+    public $heading = 'Best Seller';
 
     /**
      * The single value that will be displayed as sub-heading.
      *
      * @var string
      */
-    public $subHeading = 'Net revenue (excludes refunds and fees)';
+    public $subHeading = 'Product with the most net revenue';
 
     /**
      * The columns of the resource.
      *
      * @var int
      */
-    public $columns = 6;
+    public $columns = 12;
 
     /**
      * Get the output for the resource.
@@ -37,23 +38,14 @@ class NetRevenue extends ResourceBigNumber
     {
         $line1 = $this->getLine1();
 
-        $line2 = $this->getLine2();
+        $productName = $line1->product_name;
+        $netRevenue = '$'.number_format($line1->net_revenue);
 
-        $trendValue = round((($line1->value - $line2->value) / $line2->value) * 100, 2);
-
-        $sparkline = $this->getSparkLine();
+        $sparkline = $this->getSparkLine($line1->product_id);
 
         return [
             'line1' => [
-                'value' => '$'.number_format($line1->value),
-            ],
-            'line2' => [
-                'value' => 'from $'.number_format($line2->value),
-            ],
-            'trend' => [
-                'value' => $trendValue.'%',
-                'icon' => $trendValue > 0 ? 'fa-arrow-up' : 'fa-arrow-down',
-                'class' => $trendValue > 0 ? 'green lighten-5' : 'red lighten-5',
+                'value' => "{$productName} <span class='text-h5'>with</span> {$netRevenue}",
             ],
             'sparkline' => [
                 'autoDraw' => true,
@@ -61,71 +53,66 @@ class NetRevenue extends ResourceBigNumber
                 'autoDrawEasing' => 'ease',
                 'autoLineWidth' => false,
                 'color' => 'text--secondary',
-                'fill' => false,
+                'fill' => true,
                 'gradient' => ['#9B0000', '#FF0000', '#FFB3B3'],
                 'gradientDirection' => 'top',
                 'height' => 75,
                 'labelSize' => 7,
-                'labels' => $sparkline->pluck('value'),
-                'lineWidth' => 3,
+                'labels' => $sparkline->pluck('labels'),
+                'lineWidth' => 2,
                 'padding' => 15,
                 'showLabels' => false,
                 'smooth' => 10,
                 'type' => 'trend',
                 'value' => $this->getSparklineValue($sparkline),
                 'width' => 300,
-                'title' => 'Last 6 months',
+                'title' => 'Net Revenue',
             ],
         ];
     }
 
     /**
-     * Get line 1
+     * Get line 1.
      *
      * @return mixed
      */
     private function getLine1()
     {
-        return Order::where('is_refunded', 0)
-            ->selectRaw('SUM(total_amount) - SUM(fees) AS value')
-            ->first();
-    }
-
-    /**
-     * Get line 2
-     *
-     * @return mixed
-     */
-    private function getLine2()
-    {
-        $lastOrderDate = Order::where('is_refunded', 0)
-            ->orderBy('created_at', 'DESC')
-            ->first()
-            ->created_at;
-
-        return Order::where('is_refunded', 0)
-            ->where('created_at', '<', $lastOrderDate->subDays(30))
-            ->selectRaw('SUM(total_amount) - SUM(fees) AS value')
+        return Order::join('products', 'orders.product_id', 'products.id')
+            ->where('is_refunded', 0)
+            ->groupBy('products.id')
+            ->orderBy('net_revenue', 'DESC')
+            ->selectRaw('
+                products.id AS product_id,
+                products.name AS product_name,
+                SUM(orders.total_amount) AS gross_revenue,
+                SUM(orders.fees) AS total_fees,
+                SUM(orders.total_amount) - SUM(orders.fees) AS net_revenue
+            ')
             ->first();
     }
 
     /**
      * Get Sparkline
      *
+     * @param $productId
+     *
      * @return mixed
      */
-    private function getSparkLine()
+    private function getSparkLine($productId)
     {
         return Order::where('is_refunded', 0)
+            ->where('product_id', $productId)
             ->selectRaw('
                 YEAR(created_at) AS year,
                 MONTH(created_at) AS month,
-                (SUM(total_amount) - SUM(fees)) AS value
+                SUM(orders.total_amount) - SUM(orders.fees) AS value,
+                CONCAT(YEAR(created_at), "-", MONTH(created_at)) AS labels
             ')
-            ->groupBy('year', 'month')
+            ->groupBy('year', 'month', 'labels')
             ->orderBy('year', 'DESC')
             ->orderBy('month', 'DESC')
-            ->limit(6)
+            ->limit(12)
             ->get();
     }
 

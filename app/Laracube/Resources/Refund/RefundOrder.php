@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Laracube\Resources\Customer;
+namespace App\Laracube\Resources\Refund;
 
 use App\Models\Order;
 use Laracube\Laracube\Base\ResourceBigNumber;
 
-class CustomerPaying extends ResourceBigNumber
+class RefundOrder extends ResourceBigNumber
 {
     /**
      * The single value that will be displayed as heading.
      *
      * @var string
      */
-    public $heading = 'Paying Customers';
+    public $heading = 'Total Order';
 
     /**
      * The single value that will be displayed as sub-heading.
      *
      * @var string
      */
-    public $subHeading = 'At-least 1 non-refunded purchase';
+    public $subHeading = 'Total orders that was refunded';
 
     /**
      * The columns of the resource.
@@ -35,12 +35,24 @@ class CustomerPaying extends ResourceBigNumber
      */
     public function output()
     {
-        $number = Order::where('is_refunded', 0)
-            ->selectRaw('COUNT(DISTINCT user_id) AS paying_customers')
-            ->first();
+        $line1 = $this->getLine1();
 
         return [
-            'number' => number_format($number->paying_customers),
+            'line1' => [
+                'value' => number_format($line1->value),
+            ],
         ];
+    }
+
+    /**
+     * Get line 1
+     *
+     * @return mixed
+     */
+    private function getLine1()
+    {
+        return Order::where('is_refunded', 1)
+            ->selectRaw('COUNT(id) AS value')
+            ->first();
     }
 }

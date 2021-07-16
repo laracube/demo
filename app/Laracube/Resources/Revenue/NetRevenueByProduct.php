@@ -30,18 +30,18 @@ class NetRevenueByProduct extends ResourceTable
     public $subHeading = null;
 
     /**
-     * The per-page options for the resource.
+     * The type of the resource.
      *
-     * @var array
+     * @var string
      */
-    public static $perPageOptions = 10;
+    public static $type = 'simple';
 
     /**
      * The columns of the resource.
      *
      * @var int
      */
-    public $columns = 6;
+    public $columns = 12;
 
     /**
      * Get the query for the report.
