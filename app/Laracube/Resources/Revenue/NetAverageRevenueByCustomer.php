@@ -57,7 +57,7 @@ class NetAverageRevenueByCustomer extends ResourceBigNumber
     }
 
     /**
-     * Get line 1
+     * Get line 1.
      *
      * @return mixed
      */
@@ -69,7 +69,7 @@ class NetAverageRevenueByCustomer extends ResourceBigNumber
     }
 
     /**
-     * Get line 2
+     * Get line 2.
      *
      * @return mixed
      */

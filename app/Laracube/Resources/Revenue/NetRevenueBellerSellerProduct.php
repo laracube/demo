@@ -93,7 +93,7 @@ class NetRevenueBellerSellerProduct extends ResourceBigNumber
     }
 
     /**
-     * Get Sparkline
+     * Get Sparkline.
      *
      * @param $productId
      *
@@ -117,7 +117,7 @@ class NetRevenueBellerSellerProduct extends ResourceBigNumber
     }
 
     /**
-     * Get sparkline value
+     * Get sparkline value.
      *
      * @param $sparkline
      *

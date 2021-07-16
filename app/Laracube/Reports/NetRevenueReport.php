@@ -3,14 +3,14 @@
 namespace App\Laracube\Reports;
 
 use App\Laracube\Resources\Revenue\NetAverageRevenueByCustomer;
-use App\Laracube\Resources\Revenue\NetRevenueHighestSpender;
-use App\Laracube\Resources\Revenue\NetRevenueBellerSellerProduct;
 use App\Laracube\Resources\Revenue\NetAverageRevenueByOrder;
 use App\Laracube\Resources\Revenue\NetAverageRevenueByProduct;
 use App\Laracube\Resources\Revenue\NetOrder;
 use App\Laracube\Resources\Revenue\NetRevenue;
+use App\Laracube\Resources\Revenue\NetRevenueBellerSellerProduct;
 use App\Laracube\Resources\Revenue\NetRevenueByCustomer;
 use App\Laracube\Resources\Revenue\NetRevenueByProduct;
+use App\Laracube\Resources\Revenue\NetRevenueHighestSpender;
 use Laracube\Laracube\Base\Report;
 
 class NetRevenueReport extends Report

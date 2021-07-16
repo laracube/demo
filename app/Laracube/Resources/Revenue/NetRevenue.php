@@ -80,7 +80,7 @@ class NetRevenue extends ResourceBigNumber
     }
 
     /**
-     * Get line 1
+     * Get line 1.
      *
      * @return mixed
      */
@@ -92,7 +92,7 @@ class NetRevenue extends ResourceBigNumber
     }
 
     /**
-     * Get line 2
+     * Get line 2.
      *
      * @return mixed
      */
@@ -110,7 +110,7 @@ class NetRevenue extends ResourceBigNumber
     }
 
     /**
-     * Get Sparkline
+     * Get Sparkline.
      *
      * @return mixed
      */
@@ -130,7 +130,7 @@ class NetRevenue extends ResourceBigNumber
     }
 
     /**
-     * Get sparkline value
+     * Get sparkline value.
      *
      * @param $sparkline
      *

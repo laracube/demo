@@ -3,9 +3,9 @@
 namespace App\Laracube\Reports;
 
 use App\Laracube\Resources\Refund\RefundAverageOrder;
-use App\Laracube\Resources\Refund\RefundOrder;
 use App\Laracube\Resources\Refund\RefundByCustomer;
 use App\Laracube\Resources\Refund\RefundByProduct;
+use App\Laracube\Resources\Refund\RefundOrder;
 use App\Laracube\Resources\Refund\RefundTotal;
 use Laracube\Laracube\Base\Report;
 

@@ -45,7 +45,7 @@ class RefundOrder extends ResourceBigNumber
     }
 
     /**
-     * Get line 1
+     * Get line 1.
      *
      * @return mixed
      */
