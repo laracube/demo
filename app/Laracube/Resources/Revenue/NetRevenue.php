@@ -118,8 +118,8 @@ class NetRevenue extends ResourceBigNumber
     {
         return Order::where('is_refunded', 0)
             ->selectRaw('
-                YEAR(created_at) AS year,
-                MONTH(created_at) AS month,
+                strftime("%Y", created_at) AS year,
+                strftime("%m", created_at) AS month,
                 (SUM(total_amount) - SUM(fees)) AS value
             ')
             ->groupBy('year', 'month')

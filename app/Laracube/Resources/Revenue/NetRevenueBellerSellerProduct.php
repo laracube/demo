@@ -104,15 +104,15 @@ class NetRevenueBellerSellerProduct extends ResourceBigNumber
         return Order::where('is_refunded', 0)
             ->where('product_id', $productId)
             ->selectRaw('
-                YEAR(created_at) AS year,
-                MONTH(created_at) AS month,
+                strftime("%Y", created_at) AS year,
+                strftime("%m", created_at) AS month,
                 SUM(orders.total_amount) - SUM(orders.fees) AS value,
-                CONCAT(YEAR(created_at), "-", MONTH(created_at)) AS labels
+                strftime("%Y-%m", created_at) AS labels
             ')
             ->groupBy('year', 'month', 'labels')
             ->orderBy('year', 'DESC')
             ->orderBy('month', 'DESC')
-            ->limit(12)
+            ->limit(6)
             ->get();
     }
 
