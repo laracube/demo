@@ -52,6 +52,6 @@ class NetRevenueReport extends Report
             (new CustomerFilter()),
             (new ProductFilter()),
             (new CannotSeeCustomerFilter()),
-       ];
+        ];
     }
 }

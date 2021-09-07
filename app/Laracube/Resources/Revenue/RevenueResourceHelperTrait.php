@@ -133,7 +133,7 @@ trait RevenueResourceHelperTrait
     }
 
     /**
-     * No records found output
+     * No records found output.
      *
      * @return array[]
      */

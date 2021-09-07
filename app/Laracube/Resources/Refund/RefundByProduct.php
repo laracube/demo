@@ -3,7 +3,6 @@
 namespace App\Laracube\Resources\Refund;
 
 use App\Laracube\Collections\ProductRefundCollection;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Laracube\Laracube\Base\ResourceTable;
 

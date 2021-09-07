@@ -2,7 +2,6 @@
 
 namespace App\Laracube\Resources\Revenue;
 
-use App\Models\Order;
 use Illuminate\Http\Request;
 use Laracube\Laracube\Base\ResourceCard;
 
@@ -65,10 +64,10 @@ class NetRevenueBestSellerProduct extends ResourceCard
                     ],
                 ],
             ],
-           [
-               'type' => 'sparkline',
-               'data' => $this->getSparkLineData($sparkline, true),
-           ],
+            [
+                'type' => 'sparkline',
+                'data' => $this->getSparkLineData($sparkline, true),
+            ],
         ];
     }
 }
