@@ -28,7 +28,7 @@
                     flat
                     clipped-left
                     color="white"
-                    class="shadow z-50"
+                    class="lc-shadow z-50"
                 >
                     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
                     <v-row no-gutters>
@@ -44,27 +44,17 @@
                     app
                     floating
                     clipped
-                    color="grey lighten-5"
+                    color="lc-background"
                     v-model="drawer"
                 >
                     @include('laracube::partials.navigation')
                 </v-navigation-drawer>
-                <v-main
-                    class="grey lighten-5"
-                >
-                    <v-container
-                        fluid
-                        class="pa-8"
-                    >
-                        <router-view
-                            :key="$route.path"
-                        ></router-view>
+                <v-main class="lc-background">
+                    <v-container fluid class="pa-8">
+                        <router-view :key="$route.path"></router-view>
                     </v-container>
                 </v-main>
-                <v-footer
-                    app
-                    color="grey lighten-5"
-                >
+                <v-footer app color="lc-background">
                     @include('laracube::partials.footer')
                 </v-footer>
             </v-app>
@@ -73,7 +63,6 @@
         <script>
             window.LaracubeConfig = @json($laracubeConfig);
         </script>
-
         <script src="{{asset(mix('app.js', 'vendor/laracube'))}}"></script>
     </body>
 </html>

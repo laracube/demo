@@ -3,11 +3,13 @@
 namespace App\Laracube\Resources\Revenue;
 
 use App\Laracube\Collections\ProductNetRevenueCollection;
-use App\Models\Order;
+use Illuminate\Http\Request;
 use Laracube\Laracube\Base\ResourceTable;
 
 class NetRevenueByProduct extends ResourceTable
 {
+    use RevenueResourceHelperTrait;
+
     /**
      * Resource Collection class.
      *
@@ -15,44 +17,23 @@ class NetRevenueByProduct extends ResourceTable
      */
     public static $collection = ProductNetRevenueCollection::class;
 
-    /**
-     * The single value that will be displayed as heading.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public $heading = 'Net Revenue By Product';
 
-    /**
-     * The single value that will be displayed as sub-heading.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public $subHeading = null;
 
-    /**
-     * The type of the resource.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public static $type = 'simple';
 
-    /**
-     * The columns of the resource.
-     *
-     * @var int
-     */
-    public $columns = 12;
+    /** {@inheritdoc} */
+    public $columns = 6;
 
-    /**
-     * Get the query for the report.
-     *
-     * @return mixed
-     * @throws \Throwable
-     */
-    public function query()
+    /** {@inheritdoc} */
+    public function query(Request $request)
     {
-        return Order::join('products', 'products.id', '=', 'orders.product_id')
-            ->where('orders.is_refunded', 0)
+        return $this->getBaseQuery($request)
+            ->join('products', 'products.id', '=', 'orders.product_id')
             ->groupBy('products.id')
             ->orderBy('net_revenue', 'DESC')
             ->selectRaw('

@@ -11,32 +11,16 @@ use Laracube\Laracube\Base\Report;
 
 class RefundReport extends Report
 {
-    /**
-     * The single value name that would be used to display in navigation.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public static $navigation = 'Refund Report';
 
-    /**
-     * The single value that will be displayed as heading.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public static $heading = 'Refund Report';
 
-    /**
-     * The single value that will be displayed as sub-heading.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public static $subHeading = 'This reports shows the Refunds.';
 
-    /**
-     * Get the resources for the report.
-     *
-     * @return array
-     */
+    /** {@inheritdoc} */
     public function resources()
     {
         return [
@@ -46,5 +30,11 @@ class RefundReport extends Report
             (new RefundByCustomer()),
             (new RefundByProduct()),
         ];
+    }
+
+    /** {@inheritdoc} */
+    public function filters()
+    {
+        return [];
     }
 }

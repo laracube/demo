@@ -2,61 +2,27 @@
 
 namespace App\Laracube\Resources\Revenue;
 
-use App\Models\Order;
-use Laracube\Laracube\Base\ResourceBigNumber;
-use function number_format;
+use Illuminate\Http\Request;
+use Laracube\Laracube\Base\ResourceCard;
 
-class NetRevenueHighestSpender extends ResourceBigNumber
+class NetRevenueHighestSpender extends ResourceCard
 {
-    /**
-     * The single value that will be displayed as heading.
-     *
-     * @var string
-     */
+    use RevenueResourceHelperTrait;
+
+    /** {@inheritdoc} */
     public $heading = 'Highest Spender';
 
-    /**
-     * The single value that will be displayed as sub-heading.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public $subHeading = 'Customer with the most net revenue';
 
-    /**
-     * The columns of the resource.
-     *
-     * @var int
-     */
+    /** {@inheritdoc} */
     public $columns = 12;
 
-    /**
-     * Get the output for the resource.
-     *
-     * @return array
-     */
-    public function output()
+    /** {@inheritdoc} */
+    public function output(Request $request)
     {
-        $line1 = $this->getLine1();
-
-        $name = $line1->name;
-        $netRevenue = '$'.number_format($line1->net_revenue);
-
-        return [
-            'line1' => [
-                'value' => "{$name} <span class='text-h5'>with</span> {$netRevenue}",
-            ],
-        ];
-    }
-
-    /**
-     * Get line 1.
-     *
-     * @return mixed
-     */
-    private function getLine1()
-    {
-        return Order::join('users', 'orders.user_id', 'users.id')
-            ->where('is_refunded', 0)
+        $line1 = $this->getBaseQuery($request)
+            ->join('users', 'orders.user_id', '=', 'users.id')
             ->groupBy('users.id')
             ->orderBy('net_revenue', 'DESC')
             ->selectRaw('
@@ -66,5 +32,22 @@ class NetRevenueHighestSpender extends ResourceBigNumber
                 SUM(orders.total_amount) - SUM(orders.fees) AS net_revenue
             ')
             ->first();
+
+        if (! $line1) {
+            return $this->noRecordsFoundOutput();
+        }
+
+        $name = $line1->name;
+
+        $netRevenue = '$'.number_format($line1->net_revenue);
+
+        return [
+            [
+                'type' => 'customHtml',
+                'data' => [
+                    'value' => "<div class=' text-h3 grey--text text--darken-3 font-weight-medium line1'>{$name} <span class='text-h5'>with</span> {$netRevenue}</div>",
+                ],
+            ],
+        ];
     }
 }

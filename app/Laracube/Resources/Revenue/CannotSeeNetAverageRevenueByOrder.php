@@ -5,24 +5,30 @@ namespace App\Laracube\Resources\Revenue;
 use Illuminate\Http\Request;
 use Laracube\Laracube\Base\ResourceCard;
 
-class NetAverageRevenueByProduct extends ResourceCard
+class CannotSeeNetAverageRevenueByOrder extends ResourceCard
 {
     use RevenueResourceHelperTrait;
 
     /** {@inheritdoc} */
-    public $heading = 'Average Net Revenue/Product';
+    public $heading = 'Cannot See, Average Net Revenue/Order';
 
     /** {@inheritdoc} */
-    public $subHeading = 'Average net revenue per product';
+    public $subHeading = 'Cannot See, Average net revenue per order';
 
     /** {@inheritdoc} */
     public $columns = 4;
 
     /** {@inheritdoc} */
+    public function canSee()
+    {
+        return false;
+    }
+
+    /** {@inheritdoc} */
     public function output(Request $request)
     {
         $line1 = $this->getBaseQuery($request)
-            ->selectRaw('(SUM(total_amount)-SUM(fees))/COUNT(DISTINCT product_id) AS value')
+            ->selectRaw('(SUM(total_amount)-SUM(fees))/COUNT(id) AS value')
             ->first();
 
         if (! $line1->value) {
@@ -31,7 +37,7 @@ class NetAverageRevenueByProduct extends ResourceCard
 
         $line2 = $this->getBaseQuery($request)
             ->where('created_at', '<', $this->getLastOrderDate($request)->subDays(30))
-            ->selectRaw('(SUM(total_amount)-SUM(fees))/COUNT(DISTINCT product_id) AS value')
+            ->selectRaw('(SUM(total_amount)-SUM(fees))/COUNT(id) AS value')
             ->first();
 
         $trendValue = $this->getTrendValue($line1, $line2);

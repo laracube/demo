@@ -2,57 +2,42 @@
 
 namespace App\Laracube\Resources\Refund;
 
-use App\Models\Order;
-use Laracube\Laracube\Base\ResourceBigNumber;
+use Illuminate\Http\Request;
+use Laracube\Laracube\Base\ResourceCard;
 
-class RefundOrder extends ResourceBigNumber
+class RefundOrder extends ResourceCard
 {
-    /**
-     * The single value that will be displayed as heading.
-     *
-     * @var string
-     */
+    use RefundResourceHelperTrait;
+
+    /** {@inheritdoc} */
     public $heading = 'Total Order';
 
-    /**
-     * The single value that will be displayed as sub-heading.
-     *
-     * @var string
-     */
+    /** {@inheritdoc} */
     public $subHeading = 'Total orders that was refunded';
 
-    /**
-     * The columns of the resource.
-     *
-     * @var int
-     */
+    /** {@inheritdoc} */
     public $columns = 4;
 
-    /**
-     * Get the output for the resource.
-     *
-     * @return array
-     */
-    public function output()
+    /** {@inheritdoc} */
+    public function output(Request $request)
     {
-        $line1 = $this->getLine1();
-
-        return [
-            'line1' => [
-                'value' => number_format($line1->value),
-            ],
-        ];
-    }
-
-    /**
-     * Get line 1.
-     *
-     * @return mixed
-     */
-    private function getLine1()
-    {
-        return Order::where('is_refunded', 1)
+        $line1 = $this->getBaseQuery($request)
             ->selectRaw('COUNT(id) AS value')
             ->first();
+
+        if (! $line1->value) {
+            return $this->noRecordsFoundOutput();
+        }
+
+        return [
+            [
+                'type' => 'bigNumber',
+                'data' => [
+                    'line1' => [
+                        'value' => '$'.number_format($line1->value),
+                    ],
+                ],
+            ],
+        ];
     }
 }
