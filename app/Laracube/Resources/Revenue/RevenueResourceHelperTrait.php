@@ -10,8 +10,7 @@ trait RevenueResourceHelperTrait
     /**
      * Get base query.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     private function getBaseQuery(Request $request)
@@ -28,8 +27,7 @@ trait RevenueResourceHelperTrait
     /**
      * Get last order date.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Support\Carbon
      */
     private function getLastOrderDate(Request $request)
@@ -46,7 +44,6 @@ trait RevenueResourceHelperTrait
      *
      * @param $line1
      * @param $line2
-     *
      * @return float|int
      */
     private function getTrendValue($line1, $line2)
@@ -64,7 +61,6 @@ trait RevenueResourceHelperTrait
      * Get sparkline value.
      *
      * @param $sparkline
-     *
      * @return array
      */
     private function getSparklineValue($sparkline)
@@ -82,7 +78,6 @@ trait RevenueResourceHelperTrait
      * Get trend data.
      *
      * @param $trendValue
-     *
      * @return array
      */
     private function getTrendData($trendValue)
@@ -103,8 +98,7 @@ trait RevenueResourceHelperTrait
      * Get sparkline data.
      *
      * @param $sparkline
-     * @param false $fill
-     *
+     * @param  false  $fill
      * @return array
      */
     private function getSparkLineData($sparkline, bool $fill = false)

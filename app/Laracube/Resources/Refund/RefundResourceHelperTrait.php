@@ -10,8 +10,7 @@ trait RefundResourceHelperTrait
     /**
      * Get base query.
      *
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     private function getBaseQuery(Request $request)
