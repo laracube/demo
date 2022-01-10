@@ -3,7 +3,7 @@ version: '3'
 services:
 
   web:
-    image: akkica/laravel-web:8.1
+    image: akkiio/laravel-web:7.4
     volumes:
       - .:/var/www/html
     ports:
