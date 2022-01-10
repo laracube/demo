@@ -1,4 +1,4 @@
-FROM akkiio/laravel-web:7.4
+FROM akkica/laravel-web:8.1
 
 WORKDIR /var/www/html
 

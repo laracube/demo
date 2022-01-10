@@ -3,7 +3,7 @@ version: '3'
 services:
 
   web:
-    image: akkica/laravel-web:7.4
+    image: akkica/laravel-web:8.1
     volumes:
       - .:/var/www/html
     environment:
