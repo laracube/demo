@@ -30,15 +30,10 @@ class CreateProductsTable extends Migration
             'Baby',
             'Books',
             'Electronics',
-            'Gift Cards',
             'Home',
             'Jewelry',
             'Music',
-            'Office Products',
-            'Pet Supplies',
             'Software',
-            'Toys & Games',
-            'Video Games',
             'Watches',
         ];
 
